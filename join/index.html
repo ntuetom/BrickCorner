@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>朋友找你來 BrickCorner 對戰！</title>
+<meta name="description" content="點開就能加入朋友的房間。還沒安裝？免費下載 BrickCorner，輸入房碼一起對戰。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#061633">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrickCorner">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://ntuetom.github.io/BrickCorner/join/">
+<meta property="og:title" content="朋友找你來 BrickCorner 對戰！">
+<meta property="og:description" content="點開加入房間，一起搶邊角、卡對手。還沒安裝？免費下載就能玩。">
+<meta property="og:image" content="https://ntuetom.github.io/BrickCorner/assets/og/og-join-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="朋友找你來 BrickCorner 對戰！">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="../assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../assets/img/apple-touch-icon.png" alt="" width="34" height="34">BrickCorner</a>
+    <a class="lang-switch" id="lang-link" href="../en/join/" hreflang="en" lang="en">English</a>
+  </div>
+</header>
+
+<main class="invite">
+  <div class="wrap">
+
+    <div class="invite-card" id="state-valid" hidden>
+      <h1>朋友找你來<br>BrickCorner 對戰！</h1>
+      <p class="sub">一起搶邊角、卡對手，看誰是領地霸主。</p>
+
+      <p class="code-label">房間碼</p>
+      <div class="code-tiles" id="code-tiles" role="img"></div>
+      <button class="copy-btn" id="copy-btn" type="button" data-copied="已複製 ✓">複製房碼</button>
+
+      <div class="invite-actions">
+        <a class="btn btn-primary" id="open-app" href="#">開啟 App 加入房間</a>
+        <p class="hint">按了沒反應？如果是在 LINE 裡打開的，從右上角選單改用 Safari 開啟再按一次；或直接打開 App 輸入房碼。</p>
+      </div>
+
+      <div class="panel">
+        <h2>還沒安裝 BrickCorner？</h2>
+        <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+          <img src="../assets/img/appstore-zh-tw.svg" alt="在 App Store 下載 BrickCorner" width="135" height="50">
+        </a>
+        <ol>
+          <li>免費下載，打開 App</li>
+          <li>點<strong>「好友對戰」</strong>，選<strong>「加入」</strong></li>
+          <li>輸入房碼 <strong data-code></strong>，按<strong>「加入房間」</strong></li>
+        </ol>
+      </div>
+
+      <p class="invite-footer">房間要朋友還在裡面才進得去；進不去的話，請朋友重開一間。</p>
+    </div>
+
+    <div class="invite-card" id="state-invalid" hidden>
+      <h1>這個邀請連結<br>好像不完整</h1>
+      <p class="sub">請朋友重新分享一次，或打開 App 的「好友對戰」→「加入」，手動輸入房碼。</p>
+      <div class="panel">
+        <h2>還沒安裝 BrickCorner？</h2>
+        <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+          <img src="../assets/img/appstore-zh-tw.svg" alt="在 App Store 下載 BrickCorner" width="135" height="50">
+        </a>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="invite-card">
+        <h1>朋友找你來<br>BrickCorner 對戰！</h1>
+        <p class="sub">打開 App 的「好友對戰」→「加入」，輸入朋友給你的房碼。</p>
+        <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+          <img src="../assets/img/appstore-zh-tw.svg" alt="在 App Store 下載 BrickCorner" width="135" height="50">
+        </a>
+      </div>
+    </noscript>
+
+    <p class="invite-footer"><a href="../">認識 BrickCorner →</a></p>
+  </div>
+</main>
+
+<script src="../assets/join.js"></script>
+</body>
+</html>

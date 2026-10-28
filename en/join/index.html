@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your friend wants a BrickCorner match!</title>
+<meta name="description" content="Tap to join your friend's room. Don't have BrickCorner yet? Download it free and enter the room code.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#061633">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrickCorner">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://ntuetom.github.io/BrickCorner/en/join/">
+<meta property="og:title" content="Your friend wants a BrickCorner match!">
+<meta property="og:description" content="Tap to join the room. Claim the corners, block your friends. Don't have it yet? It's free.">
+<meta property="og:image" content="https://ntuetom.github.io/BrickCorner/assets/og/og-join-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Your friend wants a BrickCorner match!">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="../../assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../../assets/img/apple-touch-icon.png" alt="" width="34" height="34">BrickCorner</a>
+    <a class="lang-switch" id="lang-link" href="../../join/" hreflang="zh-Hant" lang="zh-Hant">中文</a>
+  </div>
+</header>
+
+<main class="invite">
+  <div class="wrap">
+
+    <div class="invite-card" id="state-valid" hidden>
+      <h1>Your friend wants<br>a BrickCorner match!</h1>
+      <p class="sub">Claim the corners, block each other, see who rules the board.</p>
+
+      <p class="code-label">ROOM CODE</p>
+      <div class="code-tiles" id="code-tiles" role="img"></div>
+      <button class="copy-btn" id="copy-btn" type="button" data-copied="Copied ✓">Copy code</button>
+
+      <div class="invite-actions">
+        <a class="btn btn-primary" id="open-app" href="#">Open the app &amp; join</a>
+        <p class="hint">Nothing happened? If you opened this inside a chat app, use its menu to open the page in Safari and try again — or open the app and enter the code yourself.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Don't have BrickCorner yet?</h2>
+        <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+          <img src="../../assets/img/appstore-en-us.svg" alt="Download BrickCorner on the App Store" width="150" height="50">
+        </a>
+        <ol>
+          <li>Download it free and open the app</li>
+          <li>Tap <strong>Online Match</strong>, then <strong>Join</strong></li>
+          <li>Enter <strong data-code></strong> and tap <strong>Join Room</strong></li>
+        </ol>
+      </div>
+
+      <p class="invite-footer">Your friend needs to still be in the room. If you can't get in, ask them to open a new one.</p>
+    </div>
+
+    <div class="invite-card" id="state-invalid" hidden>
+      <h1>This invite link<br>looks incomplete</h1>
+      <p class="sub">Ask your friend to share it again, or open Online Match → Join in the app and type the room code.</p>
+      <div class="panel">
+        <h2>Don't have BrickCorner yet?</h2>
+        <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+          <img src="../../assets/img/appstore-en-us.svg" alt="Download BrickCorner on the App Store" width="150" height="50">
+        </a>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="invite-card">
+        <h1>Your friend wants<br>a BrickCorner match!</h1>
+        <p class="sub">Open Online Match → Join in the app and enter the room code your friend sent you.</p>
+        <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+          <img src="../../assets/img/appstore-en-us.svg" alt="Download BrickCorner on the App Store" width="150" height="50">
+        </a>
+      </div>
+    </noscript>
+
+    <p class="invite-footer"><a href="../">About BrickCorner →</a></p>
+  </div>
+</main>
+
+<script src="../../assets/join.js"></script>
+</body>
+</html>
