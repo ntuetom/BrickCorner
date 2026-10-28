@@ -57,7 +57,11 @@
 
       <div class="hero-shots">
         <img class="shot shot-back" src="../assets/img/en/shot-2.jpg" alt="Online match room showing the room code and Invite Friends" width="540" height="1169">
-        <img class="shot shot-front" src="../assets/img/en/shot-6.jpg" alt="Endgame board filled with four colours of pieces" width="540" height="1169">
+        <div class="shot shot-front phone">
+          <video class="phone-video" src="../assets/video/gameplay.mp4" poster="../assets/video/gameplay-poster.jpg"
+                 width="480" height="1044" autoplay muted loop playsinline preload="metadata"
+                 aria-label="Real gameplay: four players take turns placing pieces as the board fills up"></video>
+        </div>
         <div class="floating-piece fp-1" aria-hidden="true">
           <span class="brick c-yellow"></span><span class="brick c-yellow"></span>
           <span class="brick c-yellow"></span><span class="brick gap"></span>
@@ -112,25 +116,52 @@
         <p class="kicker">Learn it in 30 seconds</p>
         <h2>Three rules.<br>Endless mind games.</h2>
       </div>
-      <div class="rules">
-        <article class="rule">
-          <img src="../assets/img/rule-1.svg" alt="A blue piece covering the top-left starting square" width="212" height="212" loading="lazy">
-          <span class="tag info">Opening</span>
-          <h3>Start from your corner</h3>
-          <p>Everyone's first piece must cover their own starting corner.</p>
-        </article>
-        <article class="rule">
-          <img src="../assets/img/rule-2.svg" alt="Two blue pieces touching at a corner is allowed; a dashed piece touching a blue piece along an edge is not" width="212" height="212" loading="lazy">
-          <span class="tag ok">Corners ✓</span> <span class="tag no">Edges ✗</span>
-          <h3>Same colour: corners only</h3>
-          <p>Your new piece must touch your own pieces at a corner — never along an edge.</p>
-        </article>
-        <article class="rule">
-          <img src="../assets/img/rule-3.svg" alt="A red piece placed against a blue piece, blocking both of blue's open corners" width="212" height="212" loading="lazy">
-          <span class="tag no">Block</span>
-          <h3>Rivals can box you in</h3>
-          <p>Different colours can touch freely. Take your rival's corners first and they run out of room.</p>
-        </article>
+      <div class="rules-layout">
+        <ol class="rule-list">
+          <li class="rule-item">
+            <img src="../assets/img/rule-1.svg" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>Start from your corner</h3>
+              <p>Everyone's first piece must cover their own starting corner.</p>
+            </div>
+          </li>
+          <li class="rule-item">
+            <img src="../assets/img/rule-2.svg" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>Same colour: corners only</h3>
+              <p>Your new piece must touch your own pieces at a corner — never along an edge.</p>
+            </div>
+          </li>
+          <li class="rule-item">
+            <img src="../assets/img/rule-3.svg" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>Rivals can box you in</h3>
+              <p>Different colours can touch freely. Take your rival's corners first and they run out of room.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="trial" id="trial">
+          <h3 class="trial-title">Your turn</h3>
+          <p class="trial-sub">You're blue, starting bottom-left. Red will try to box you in.</p>
+          <div class="trial-board" id="trial-board" role="group" aria-label="Practice board, 8 by 8"></div>
+          <p class="trial-msg" id="trial-msg" role="status" aria-live="polite"></p>
+          <div class="trial-tray" id="trial-tray" role="group" aria-label="Your pieces"></div>
+          <div class="trial-controls">
+            <button type="button" class="trial-btn" id="trial-rotate">Rotate</button>
+            <button type="button" class="trial-btn" id="trial-flip">Flip</button>
+            <button type="button" class="trial-btn" id="trial-reset">Restart</button>
+            <button type="button" class="trial-btn primary" id="trial-place" disabled>Place</button>
+          </div>
+          <div class="trial-end" id="trial-end" hidden>
+            <p id="trial-end-msg"></p>
+            <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+              <img src="../assets/img/appstore-en-us.svg" alt="Download BrickCorner on the App Store" width="168" height="56">
+            </a>
+            <button type="button" class="trial-btn" id="trial-restart">Play again</button>
+          </div>
+          <noscript><p class="trial-msg">Turn on JavaScript to try it here.</p></noscript>
+        </div>
       </div>
       <p class="rules-note"><strong>Scoring:</strong> if you can't place a piece, you pass. At the end you lose a point for every square left in your hand, and placing everything earns a bonus — fewest squares left wins.</p>
     </div>
@@ -257,5 +288,6 @@
   </div>
 </footer>
 
+<script src="../assets/home.js" defer></script>
 </body>
 </html>

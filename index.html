@@ -57,7 +57,11 @@
 
       <div class="hero-shots">
         <img class="shot shot-back" src="assets/img/zh/shot-2.jpg" alt="開房揪好友：房間碼與邀請朋友畫面" width="540" height="1169">
-        <img class="shot shot-front" src="assets/img/zh/shot-6.jpg" alt="四色拼塊填滿棋盤的終局畫面" width="540" height="1169">
+        <div class="shot shot-front phone">
+          <video class="phone-video" src="assets/video/gameplay.mp4" poster="assets/video/gameplay-poster.jpg"
+                 width="480" height="1044" autoplay muted loop playsinline preload="metadata"
+                 aria-label="實際對局畫面：四位玩家輪流放拼塊，棋盤慢慢被填滿"></video>
+        </div>
         <div class="floating-piece fp-1" aria-hidden="true">
           <span class="brick c-yellow"></span><span class="brick c-yellow"></span>
           <span class="brick c-yellow"></span><span class="brick gap"></span>
@@ -112,25 +116,52 @@
         <p class="kicker">30 秒看懂</p>
         <h2>規則只有三條，<br>心機可以很多</h2>
       </div>
-      <div class="rules">
-        <article class="rule">
-          <img src="assets/img/rule-1.svg" alt="藍色拼塊蓋住左上角的起始格" width="212" height="212" loading="lazy">
-          <span class="tag info">開局</span>
-          <h3>從自己的角落出發</h3>
-          <p>每個人的第一塊，都要蓋住自己的起始角。</p>
-        </article>
-        <article class="rule">
-          <img src="assets/img/rule-2.svg" alt="兩塊藍色拼塊以角相接是可以的；虛線拼塊和藍色拼塊邊貼邊則不行" width="212" height="212" loading="lazy">
-          <span class="tag ok">角碰角 ✓</span> <span class="tag no">邊貼邊 ✗</span>
-          <h3>同色只能角碰角</h3>
-          <p>自己的拼塊要用「角」接上去，不能「邊」貼著邊。</p>
-        </article>
-        <article class="rule">
-          <img src="assets/img/rule-3.svg" alt="紅色拼塊貼著藍色拼塊放，堵住藍色的兩個出口" width="212" height="212" loading="lazy">
-          <span class="tag no">卡位</span>
-          <h3>對手可以貼著你卡</h3>
-          <p>不同顏色沒有限制。搶先佔住對手的角，他就沒路可走。</p>
-        </article>
+      <div class="rules-layout">
+        <ol class="rule-list">
+          <li class="rule-item">
+            <img src="assets/img/rule-1.svg" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>從自己的角落出發</h3>
+              <p>每個人的第一塊，都要蓋住自己的起始角。</p>
+            </div>
+          </li>
+          <li class="rule-item">
+            <img src="assets/img/rule-2.svg" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>同色只能角碰角</h3>
+              <p>自己的拼塊要用「角」接上去，不能「邊」貼著邊。</p>
+            </div>
+          </li>
+          <li class="rule-item">
+            <img src="assets/img/rule-3.svg" alt="" width="64" height="64" loading="lazy">
+            <div>
+              <h3>對手可以貼著你卡</h3>
+              <p>不同顏色沒有限制。搶先佔住對手的角，他就沒路可走。</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="trial" id="trial">
+          <h3 class="trial-title">換你試試</h3>
+          <p class="trial-sub">你是藍色，從左下角出發；紅色會想辦法卡你。</p>
+          <div class="trial-board" id="trial-board" role="group" aria-label="試玩棋盤，8×8"></div>
+          <p class="trial-msg" id="trial-msg" role="status" aria-live="polite"></p>
+          <div class="trial-tray" id="trial-tray" role="group" aria-label="你的拼塊"></div>
+          <div class="trial-controls">
+            <button type="button" class="trial-btn" id="trial-rotate">旋轉</button>
+            <button type="button" class="trial-btn" id="trial-flip">翻轉</button>
+            <button type="button" class="trial-btn" id="trial-reset">重來</button>
+            <button type="button" class="trial-btn primary" id="trial-place" disabled>放下</button>
+          </div>
+          <div class="trial-end" id="trial-end" hidden>
+            <p id="trial-end-msg"></p>
+            <a class="badge-link" href="https://apps.apple.com/app/id6757150028">
+              <img src="assets/img/appstore-zh-tw.svg" alt="在 App Store 下載 BrickCorner" width="152" height="56">
+            </a>
+            <button type="button" class="trial-btn" id="trial-restart">再玩一次</button>
+          </div>
+          <noscript><p class="trial-msg">開啟 JavaScript 就能在這裡試玩。</p></noscript>
+        </div>
       </div>
       <p class="rules-note"><strong>計分：</strong>放不下就跳過。遊戲結束時，手上剩幾格就扣幾分；全部放完還有加分——剩越少的人贏。</p>
     </div>
@@ -257,5 +288,6 @@
   </div>
 </footer>
 
+<script src="assets/home.js" defer></script>
 </body>
 </html>
