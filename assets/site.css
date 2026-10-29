@@ -650,11 +650,12 @@ section { padding: 80px 0; }
 
 .feature p { margin: 0; color: var(--muted); font-size: 15px; }
 
-/* themes (1.2.0) — mobile: a swipeable row like the gallery; wider: a 3×3 grid */
+/* themes showcase (1.2.0) — a big board close-up that switches between the 9 themes;
+   phones stack it, wider screens put the picker beside it */
 
 #themes {
   background:
-    radial-gradient(800px 360px at 50% 0%, rgba(255, 210, 31, 0.1), transparent 70%),
+    radial-gradient(900px 420px at 30% 0%, rgba(255, 210, 31, 0.12), transparent 70%),
     var(--navy-900);
   border-top: 1px solid var(--line);
 }
@@ -672,46 +673,56 @@ section { padding: 80px 0; }
   vertical-align: 1px;
 }
 
-.theme-list {
-  list-style: none;
+.showcase {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 44%;
-  gap: 12px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 4px 16px 24px;
-  margin: 0 -16px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--navy-600) transparent;
+  gap: 18px 40px;
+  grid-template-areas: "stage" "info" "picker";
 }
 
-@media (min-width: 720px) {
-  .theme-list {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    overflow: visible;
-    padding: 0;
-    margin: 0;
+@media (min-width: 900px) {
+  .showcase {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "stage info" "stage picker";
+    align-items: start;
   }
 }
 
-.theme-card {
-  scroll-snap-align: start;
-  display: grid;
-  align-items: center;
-  justify-items: start;
-  gap: 8px;
-  padding: 14px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.04);
+.showcase-img {
+  grid-area: stage;
+  width: 100%;
+  aspect-ratio: 1260 / 996;
+  padding: clamp(12px, 3vw, 24px);
+  border-radius: calc(var(--radius) + 4px);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--line);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  object-fit: contain;
 }
 
-.theme-card img { grid-column: 1 / -1; width: 100%; margin-bottom: 4px; }
+.showcase-caption {
+  grid-area: info;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  min-height: 80px;
+  min-width: 0;
+}
 
-.theme-name { font-weight: 800; font-size: 16px; min-width: 0; }
+.theme-picker { grid-area: picker; }
+
+.showcase-name { font-size: clamp(24px, 5vw, 32px); font-weight: 900; line-height: 1.2; }
+
+.showcase-desc { flex-basis: 100%; margin: 0; color: var(--muted); font-size: 16px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .showcase-img,
+  .showcase-caption { transition: opacity 0.16s ease; }
+  .showcase.is-swapping .showcase-img,
+  .showcase.is-swapping .showcase-caption { opacity: 0; }
+}
 
 .theme-tag {
   font-size: 12px;
@@ -722,14 +733,50 @@ section { padding: 80px 0; }
   border: 1px solid currentColor;
 }
 
-/* name and tag share a row only when every card is wide enough for the longest pair */
-@media (min-width: 1000px) {
-  .theme-card { grid-template-columns: 1fr auto; gap: 12px 8px; }
-  .theme-tag { justify-self: end; }
-}
-
 .theme-tag.is-free { color: var(--green); }
 .theme-tag.is-coin { color: var(--yellow); }
+
+.theme-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.theme-chip {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 12px 6px 10px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.theme-chip img { width: 42px; height: 42px; border-radius: 4px; }
+
+.theme-chip span { min-width: 0; text-align: center; }
+
+@media (min-width: 900px) {
+  .theme-chip { padding: 16px 6px 14px; font-size: 14px; }
+  .theme-chip img { width: 48px; height: 48px; }
+}
+
+.theme-chip:hover { border-color: var(--navy-600); color: var(--text); }
+
+.theme-chip[aria-pressed="true"] {
+  border-color: var(--yellow);
+  background: rgba(255, 210, 31, 0.1);
+  color: var(--text);
+}
+
+.theme-chip:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 
 /* hero: "new themes coming" sticker on the phone, until 1.2.0 is live */
 .video-note {

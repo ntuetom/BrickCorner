@@ -1,4 +1,4 @@
-// Home page: hero gameplay video, and the "try it" mini board in the rules section.
+// Home page: hero gameplay video, the "try it" mini board in the rules section, and the theme showcase.
 (function () {
   "use strict";
 
@@ -378,4 +378,105 @@
 
   root.classList.add("is-ready");
   reset();
+})();
+
+// Theme showcase: tapping a theme swaps the big board close-up; when nobody has tapped yet it
+// steps through the themes every few seconds while the section is on screen.
+(function () {
+  "use strict";
+
+  var root = document.querySelector("#themes .showcase");
+  var picker = root && root.querySelector(".theme-picker");
+  if (!picker) return;
+
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var img = root.querySelector(".showcase-img");
+  var nameEl = root.querySelector(".showcase-name");
+  var tagEl = root.querySelector(".showcase-caption .theme-tag");
+  var descEl = root.querySelector(".showcase-desc");
+  var chips = Array.prototype.slice.call(picker.querySelectorAll(".theme-chip"));
+  var base = img.getAttribute("src").replace(/[^\/]+\.webp$/, "");
+  var INTERVAL = 3000;
+
+  var current = 0;
+  chips.forEach(function (chip, i) { if (chip.getAttribute("aria-pressed") === "true") current = i; });
+
+  var timer = null;
+  var onScreen = false;
+  var hovering = false;
+  var userChose = false;
+  var preloaded = false;
+  var seq = 0;
+
+  function preload() {
+    if (preloaded) return;
+    preloaded = true;
+    chips.forEach(function (chip) { new Image().src = base + chip.dataset.slug + ".webp"; });
+  }
+
+  function apply(chip) {
+    var name = chip.querySelector("span").textContent;
+    var free = chip.dataset.free === "1";
+    img.src = base + chip.dataset.slug + ".webp";
+    img.alt = picker.dataset.alt.replace("{name}", name);
+    nameEl.textContent = name;
+    tagEl.textContent = free ? picker.dataset.freeLabel : picker.dataset.coinLabel;
+    tagEl.className = "theme-tag " + (free ? "is-free" : "is-coin");
+    descEl.textContent = chip.dataset.desc;
+  }
+
+  function show(i) {
+    if (i === current) return;
+    current = i;
+    var chip = chips[i];
+    chips.forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
+    if (reduceMotion) { apply(chip); return; }
+
+    var mine = ++seq;
+    root.classList.add("is-swapping");
+    setTimeout(function () {
+      if (mine !== seq) return;
+      apply(chip);
+      var reveal = function () { if (mine === seq) root.classList.remove("is-swapping"); };
+      if (img.complete) requestAnimationFrame(reveal);
+      else {
+        img.addEventListener("load", reveal, { once: true });
+        img.addEventListener("error", reveal, { once: true });
+      }
+    }, 160);
+  }
+
+  function sync() {
+    var run = onScreen && !hovering && !userChose && !reduceMotion && !document.hidden;
+    if (run && !timer) timer = setInterval(function () { show((current + 1) % chips.length); }, INTERVAL);
+    if (!run && timer) { clearInterval(timer); timer = null; }
+    root.setAttribute("data-autoplay", timer ? "on" : "off"); // lets the page test see whether it is cycling
+  }
+
+  chips.forEach(function (chip, i) {
+    chip.addEventListener("click", function () {
+      userChose = true;
+      sync();
+      preload();
+      show(i);
+    });
+  });
+
+  root.addEventListener("mouseenter", function () { hovering = true; sync(); });
+  root.addEventListener("mouseleave", function () { hovering = false; sync(); });
+  document.addEventListener("visibilitychange", sync);
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) preload();
+    }, { rootMargin: "600px 0px" }).observe(root);
+    new IntersectionObserver(function (entries) {
+      onScreen = entries[0].isIntersecting;
+      sync();
+    }, { threshold: 0.4 }).observe(root);
+  } else {
+    preload();
+    onScreen = true;
+    sync();
+  }
 })();
