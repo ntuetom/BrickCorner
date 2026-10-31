@@ -9,9 +9,10 @@
   --text: #f4f7ff;
   --muted: #a9b8d9;
   --blue: #2f6bff;
-  --yellow: #ffd21f;
-  --red: #ff4848;
-  --green: #34d058;
+  /* 玩家四色：跟 App 的 GameTheme.PlayerColors 同一組，明度接近、紅綠黃之間拉開（色弱也分得出） */
+  --yellow: #f2c100;
+  --red: #e5484d;
+  --green: #2db35a;
   --radius: 20px;
   --max: 1120px;
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang TC", "Noto Sans TC",
@@ -112,7 +113,7 @@ a { color: inherit; }
   padding: 112px 0 72px;
   background:
     radial-gradient(1200px 600px at 85% 10%, rgba(47, 107, 255, 0.35), transparent 60%),
-    radial-gradient(800px 500px at 0% 100%, rgba(255, 210, 31, 0.12), transparent 60%),
+    radial-gradient(800px 500px at 0% 100%, rgba(242, 193, 0, 0.12), transparent 60%),
     linear-gradient(180deg, var(--navy-800), var(--navy-900));
   overflow: hidden;
 }
@@ -148,8 +149,8 @@ a { color: inherit; }
   font-size: 14px;
   font-weight: 700;
   color: var(--yellow);
-  background: rgba(255, 210, 31, 0.1);
-  border: 1px solid rgba(255, 210, 31, 0.35);
+  background: rgba(242, 193, 0, 0.1);
+  border: 1px solid rgba(242, 193, 0, 0.35);
   padding: 4px 12px;
   border-radius: 999px;
   margin: 0 0 20px;
@@ -485,7 +486,7 @@ section { padding: 80px 0; }
 .trial-cell.is-red { background: var(--red); }
 
 .trial-cell.ghost-ok { background: rgba(47, 107, 255, 0.6); outline: 2px solid var(--green); outline-offset: -2px; }
-.trial-cell.ghost-bad { background: rgba(255, 72, 72, 0.3); outline: 2px solid var(--red); outline-offset: -2px; }
+.trial-cell.ghost-bad { background: rgba(229, 72, 77, 0.3); outline: 2px solid var(--red); outline-offset: -2px; }
 
 .trial-cell.is-start::after,
 .trial-cell.is-corner::after {
@@ -547,7 +548,7 @@ section { padding: 80px 0; }
 
 .trial-piece[aria-pressed="true"] {
   border-color: var(--yellow);
-  background: rgba(255, 210, 31, 0.12);
+  background: rgba(242, 193, 0, 0.12);
 }
 
 .trial-piece .mini-shape { display: grid; gap: 2px; }
@@ -603,8 +604,8 @@ section { padding: 80px 0; }
   margin: 28px 0 0;
   padding: 18px 22px;
   border-radius: 16px;
-  background: rgba(255, 210, 31, 0.08);
-  border: 1px solid rgba(255, 210, 31, 0.3);
+  background: rgba(242, 193, 0, 0.08);
+  border: 1px solid rgba(242, 193, 0, 0.3);
   color: var(--text);
 }
 
@@ -655,7 +656,7 @@ section { padding: 80px 0; }
 
 #themes {
   background:
-    radial-gradient(900px 420px at 30% 0%, rgba(255, 210, 31, 0.12), transparent 70%),
+    radial-gradient(900px 420px at 30% 0%, rgba(242, 193, 0, 0.12), transparent 70%),
     var(--navy-900);
   border-top: 1px solid var(--line);
 }
@@ -772,7 +773,7 @@ section { padding: 80px 0; }
 
 .theme-chip[aria-pressed="true"] {
   border-color: var(--yellow);
-  background: rgba(255, 210, 31, 0.1);
+  background: rgba(242, 193, 0, 0.1);
   color: var(--text);
 }
 
@@ -1021,7 +1022,7 @@ section { padding: 80px 0; }
   background: var(--yellow);
   color: #231b00;
   box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.45), inset 0 -5px 0 rgba(0, 0, 0, 0.18),
-    0 12px 30px rgba(255, 210, 31, 0.25);
+    0 12px 30px rgba(242, 193, 0, 0.25);
 }
 
 .btn-primary:active { transform: translateY(1px); }
